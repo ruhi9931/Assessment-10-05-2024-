@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Details</title>
+</head>
+<body>
+  <table id="employeeTable" border="1">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Job Title</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Full Name</th>
+        <th>Employee Code</th>
+        <th>Region</th>
+        <th>Phone Number</th>
+        <th>Email Address</th>
+      </tr>
+    </thead>
+    <tbody id="employeeTableBody">
+    </tbody>
+  </table>
+
+  <script>
+    const jsonData = `{
+      "Employees": [
+        {
+          "userId": "rirani",
+          "jobTitleName": "Developer",
+          "firstName": "Romin",
+          "lastName": "Irani",
+          "preferredFullName": "Romin Irani",
+          "employeeCode": "E1",
+          "region": "CA",
+          "phoneNumber": "408-1234567",
+          "emailAddress": "romin.k.irani@gmail.com"
+        },
+        {
+          "userId": "thanks",
+          "jobTitleName": "Program Directory",
+          "firstName": "Tom",
+          "lastName": "Hanks",
+          "preferredFullName": "Tom Hanks",
+          "employeeCode": "E3",
+          "region": "CA",
+          "phoneNumber": "408-2222222",
+          "emailAddress": "tomhanks@gmail.com"
+        },
+        {
+          "userId": "Vikram",
+          "jobTitleName": "Program Directory",
+          "firstName": "Tom",
+          "lastName": "Hanks",
+          "preferredFullName": "Tom Hanks",
+          "employeeCode": "E3",
+          "region": "CA",
+          "phoneNumber": "408-2222222",
+          "emailAddress": "vikram@gmail.com"
+        },
+        {
+          "userId": "Lokesh",
+          "jobTitleName": "Program Directory",
+          "firstName": "Tom",
+          "lastName": "Hanks",
+          "preferredFullName": "Tom Hanks",
+          "employeeCode": "E3",
+          "region": "CA",
+          "phoneNumber": "408-2222222",
+          "emailAddress": "lokesh@gmail.com"
+        },
+        {
+          "userId": "Sateesh",
+          "jobTitleName": "Program Directory",
+          "firstName": "Tom",
+          "lastName": "Hanks",
+          "preferredFullName": "Tom Hanks",
+          "employeeCode": "E3",
+          "region": "CA",
+          "phoneNumber": "408-2222222",
+          "emailAddress": "sateesh@gmail.com"
+        },
+        {
+          "userId": "nirani",
+          "jobTitleName": "Developer",
+          "firstName": "Neil",
+          "lastName": "Irani",
+          "preferredFullName": "Neil Irani",
+          "employeeCode": "E2",
+          "region": "CA",
+          "phoneNumber": "408-1111111",
+          "emailAddress": "neilrirani@gmail.com"
+        }
+      ]
+    }`;
+
+    const data = JSON.parse(jsonData);
+    const employees = data.Employees;
+
+    // Sort employees array by jobTitleName
+    employees.sort((a, b) => {
+      if (a.jobTitleName === 'Developer') return -1;
+      if (b.jobTitleName === 'Developer') return 1;
+      return 0;
+    });
+
+    const tableBody = document.getElementById('employeeTableBody');
+    employees.forEach((employee, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${employee.userId}</td>
+        <td>${employee.jobTitleName}</td>
+        <td>${employee.firstName}</td>
+        <td>${employee.lastName}</td>
+        <td>${employee.preferredFullName}</td>
+        <td>${employee.employeeCode}</td>
+        <td>${employee.region}</td>
+        <td>${employee.phoneNumber}</td>
+        <td>${employee.emailAddress}</td>
+      `;
+      tableBody.appendChild(row);
+
+      // Highlight even rows with background color blue
+      if (index % 2 === 1) {
+        row.style.backgroundColor = 'blue';
+        row.style.color = 'white'; // Optionally set text color to white for better readability
+      }
+    });
+  </script>
+</body>
+</html>
